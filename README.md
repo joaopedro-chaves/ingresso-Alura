@@ -4,7 +4,7 @@ Este projeto é um exercício de programação de lógica para simular a compra 
 
 Este projeto/exercício é fornecido pela Alura como parte do curso Lógica de Programação.
 
-
+![imagem do projeto](img/printscreen.jpeg)
 
 ## Roadmap
 
