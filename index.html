@@ -6,47 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/_reset.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./styles/style.css">
     <title>e-Ticket</title>
 </head>
 
 <body>
     <header>
-        <img class="logo" src="./assets/PNG/Logo e-tricket.png" alt="Logo">
+        <img class="logo" src="assets/Logo-e-tricket.png" alt="Logo">
     </header>
+
     <main class="container">
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="header-section">
+                    <h1>Compre seu ingresso</h1>
+                    <p class="subtitle">Garanta sua entrada para os melhores eventos</p>
+                </div>
 
-        <div class="grafismo"></div>
-        <h1>Compre seu <span>ingresso</span></h1>
-        <form action="">
-            <label class="input-group">
-                Escolha o tipo
-                <select name="tipo-ingresso" id="tipo-ingresso">
-                    <option value="inferior">Cadeira inferior</option>
-                    <option value="superior">Cadeira superior</option>
-                    <option value="pista">Pista</option>
-                </select>
-            </label>
-            <label class="input-group">Qtde.
-                <input type="number" id="qtd-ingresso" placeholder="00" min="1" max="10">
-            </label>
-            <button onclick="comprar()" type="button">Comprar</button>
-        </form>
-        <img class="hachuras" src="./assets/SVG/Hachuras.svg" alt="">
-        <section>
-            <h2>Quantidade disponível</h2>
+                <form class="booking-form">
+                    <div class="input-container">
+                        <label for="tipo-ingresso" class="md-label">Tipo de Ingresso</label>
+                        <div class="select-wrapper">
+                            <select name="tipo-ingresso" id="tipo-ingresso">
+                                <option value="inferior">Cadeira inferior</option>
+                                <option value="superior">Cadeira superior</option>
+                                <option value="pista">Pista</option>
+                            </select>
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </div>
+                    </div>
 
-            <ul class="lista">
-                <li>Pista<span id="qtd-pista">100</span></li>
-                <li>Cadeira superior<span id="qtd-superior">200</span></li>
-                <li>Cadeira inferior<span id="qtd-inferior">400</span></li>
-                
-            </ul>
-            <img src="./assets/Ingresso.svg" alt="">
-        </section>
+                    <div class="input-container qty-container">
+                        <label for="qtd-ingresso" class="md-label">Qtde.</label>
+                        <input type="number" id="qtd-ingresso" placeholder="0" min="1" max="10">
+                    </div>
+
+                    <button class="md-button" onclick="comprar()" type="button">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Comprar
+                    </button>
+                </form>
+
+                <div class="divider"></div>
+
+                <section class="inventory-section">
+                    <div class="inventory-header">
+                        <span class="material-symbols-outlined">confirmation_number</span>
+                        <h2>Quantidade disponível</h2>
+                    </div>
+
+                    <ul class="inventory-list">
+                        <li class="inventory-item">
+                            <span class="label">Pista</span>
+                            <span class="badge" id="qtd-pista">100</span>
+                        </li>
+                        <li class="inventory-item">
+                            <span class="label">Cadeira superior</span>
+                            <span class="badge" id="qtd-superior">200</span>
+                        </li>
+                        <li class="inventory-item">
+                            <span class="label">Cadeira inferior</span>
+                            <span class="badge" id="qtd-inferior">400</span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="md-card-footer">
+                <svg class="footer-icon" width="224" height="133" viewBox="0 0 224 133" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M93.0641 132.125L93.0641 126.447L88.4109 126.447L88.4109 132.125L58.1651 132.125L16.4288 132.125C7.35542 132.125 -2.98719e-05 124.739 -2.90754e-05 115.628C-2.82885e-05 106.628 7.60721 99.6321 15.4495 95.2737C25.6595 89.5994 32.5724 78.673 32.5724 66.1253C32.5724 53.5777 25.6595 42.6513 15.4495 36.977C7.60722 32.6186 -2.12068e-05 25.623 -2.042e-05 16.6225C-1.96235e-05 7.51136 7.3554 0.125347 16.4288 0.125348L58.1651 0.125352L88.4109 0.125354L88.4109 5.80394L93.0642 5.80394L93.0642 0.125355L109.932 0.125356L114.068 0.125357L123.956 0.125357L207.571 0.125365C216.645 0.125366 224 7.51138 224 16.6225C224 25.623 216.393 32.6186 208.551 36.977C198.34 42.6513 191.428 53.5777 191.428 66.1254C191.428 78.673 198.34 89.5994 208.551 95.2737C216.393 99.6321 224 106.628 224 115.628C224 124.739 216.645 132.125 207.571 132.125L123.956 132.125L114.068 132.125L109.932 132.125L93.0641 132.125ZM93.0641 117.167L93.0641 107.887L88.4109 107.887L88.4109 117.167L93.0641 117.167ZM93.0642 98.6063L93.0642 89.326L88.4109 89.326L88.4109 98.6063L93.0642 98.6063ZM93.0642 80.0458L93.0642 70.7656L88.4109 70.7656L88.4109 80.0458L93.0642 80.0458ZM93.0642 61.4853L93.0642 52.2051L88.4109 52.2051L88.4109 61.4853L93.0642 61.4853ZM93.0642 42.9249L93.0642 33.6446L88.4109 33.6446L88.4109 42.9249L93.0642 42.9249ZM93.0642 24.3644L93.0642 15.0842L88.4109 15.0842L88.4109 24.3644L93.0642 24.3644Z"
+                        fill="currentColor" />
+                </svg>
+            </div>
+        </div>
     </main>
+
+    <div id="snackbar" class="md-snackbar"></div>
 
     <script src="js/app.js"></script>
 </body>

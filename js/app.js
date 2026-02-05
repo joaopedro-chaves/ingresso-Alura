@@ -1,44 +1,33 @@
 function comprar() {
-    // implementar a lógica de compra de ingressos
     let qtdIngresso = parseInt(document.getElementById("qtd-ingresso").value);
     let tipoIngresso = document.getElementById("tipo-ingresso").value;
-    let qtdPista = document.getElementById("qtd-pista");
-    let qtdSuperior = document.getElementById("qtd-superior");
-    let qtdInferior = document.getElementById("qtd-inferior");
 
-    // atualizar a quantidade de ingressos disponíveis
-    if (tipoIngresso === "pista") {
-        qtdPista.textContent = parseInt(qtdPista.textContent) - qtdIngresso;
-        Alert('Compra realizada com sucesso!');
-    } else if (tipoIngresso === "superior") {
-        qtdSuperior.textContent = parseInt(qtdSuperior.textContent) - qtdIngresso;
-        Alert('Compra realizada com sucesso!');
-    } else if (tipoIngresso === "inferior") {
-        qtdInferior.textContent = parseInt(qtdInferior.textContent) - qtdIngresso;
-        Alert('Compra realizada com sucesso!');
+    // 1. Validar se a quantidade é um número positivo
+    if (isNaN(qtdIngresso) || qtdIngresso <= 0) {
+        showSnackbar("Por favor, insira uma quantidade válida de ingressos.", "error");
+        return;
     }
 
-    // validar se há ingressos suficientes
-    if (parseInt(qtdPista.textContent) < 0 || parseInt(qtdSuperior.textContent) < 0 || parseInt(qtdInferior.textContent) < 0) {
-        alert("Não há ingressos suficientes disponíveis para essa compra.");
-        if (tipoIngresso === "pista") {
-            qtdPista.textContent = parseInt(qtdPista.textContent) + qtdIngresso;
-        } else if (tipoIngresso === "superior") {
-            qtdSuperior.textContent = parseInt(qtdSuperior.textContent) + qtdIngresso;
-        } else if (tipoIngresso === "inferior") {
-            qtdInferior.textContent = parseInt(qtdInferior.textContent) + qtdIngresso;
-        }
-    }
+    let elementoQtd = document.getElementById(`qtd-${tipoIngresso}`);
+    let qtdDisponivel = parseInt(elementoQtd.textContent);
 
-    // validar quantidade de ingressos
-    if (qtdIngresso <= 0 || isNaN(qtdIngresso)) {
-        alert("Por favor, insira uma quantidade válida de ingressos para comprar.");
-        if (tipoIngresso === "pista") {
-            qtdPista.textContent = parseInt(qtdPista.textContent) + qtdIngresso;
-        } else if (tipoIngresso === "superior") {
-            qtdSuperior.textContent = parseInt(qtdSuperior.textContent) + qtdIngresso;
-        } else if (tipoIngresso === "inferior") {
-            qtdInferior.textContent = parseInt(qtdInferior.textContent) + qtdIngresso;
-        }
+    // 2. Validar se há ingressos suficientes
+    if (qtdIngresso > qtdDisponivel) {
+        showSnackbar(`Não há ingressos suficientes para o tipo ${tipoIngresso}.`, "error");
+    } else {
+        // 3. Processar a compra
+        elementoQtd.textContent = qtdDisponivel - qtdIngresso;
+        showSnackbar("Compra realizada com sucesso!", "success");
     }
+}
+
+function showSnackbar(message, type = "success") {
+    let snackbar = document.getElementById("snackbar");
+    snackbar.textContent = message;
+    snackbar.className = `md-snackbar show ${type}`;
+
+    // Remove a classe após 3 segundos
+    setTimeout(function () {
+        snackbar.className = snackbar.className.replace("show", "").replace(type, "").trim();
+    }, 3000);
 }
